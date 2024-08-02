@@ -5,6 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodArt'24 Challenges</title>
     <link rel="stylesheet" href="styles2.css">
+    <style>
+        .challenge {
+            position: relative;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .status-image {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: none;
+            width: 20px;
+            height: 20px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -19,8 +37,8 @@
 
     <script>
         const flags = [
-            'CODflag{p33k_@_b00_19eccd10}', 'CODflag{caesar_d3cr9pt3d_b204adc6}', 'CODflag{45c11_n0_qu35710n5_1ll_t311_y3_n0_l135_445d4180}',
-            'flag{correct_flag4}', 'flag{correct_flag5}', 'flag{correct_flag6}',
+            'flag{p33k_@_b00_19eccd10}', 'flag{caesar_d3cr9pt3d_b204adc6}', 'flag{45c11_n0_qu35710n5_1ll_t311_y3_n0_l135_445d4180}',
+            'flag{t1m3m@ch1n3_5cde9075}', 'flag{correct_flag5}', 'flag{correct_flag6}',
             'flag{correct_flag7}', 'flag{correct_flag8}', 'flag{correct_flag9}',
             'flag{correct_flag10}', 'flag{correct_flag11}', 'flag{correct_flag12}',
             'flag{correct_flag13}', 'flag{correct_flag14}', 'flag{correct_flag15}',
@@ -35,7 +53,7 @@
 
         const fileNames = [
             'challenge (1).zip', 'challenge(2).txt', 'challenge(3).txt',
-            'your_actual_file4.zip', 'your_actual_file5.zip', 'your_actual_file6.zip',
+            'challenge(4).zip', 'your_actual_file5.zip', 'your_actual_file6.zip',
             'your_actual_file7.zip', 'challenge(8).txt', 'your_actual_file9.zip',
             'your_actual_file10.zip', 'your_actual_file11.zip', 'your_actual_file12.zip',
             'your_actual_file13.zip', 'your_actual_file14.zip', 'your_actual_file15.zip',
@@ -44,111 +62,65 @@
         ];
 
         const descriptions = [
-        //1
-            "I've gotten bored of handing out flags as text. Wouldn't it be cool if they were an image instead? You can download the challenge files!", 
-        //2  
+            "I've gotten bored of handing out flags as text. Wouldn't it be cool if they were an image instead? You can download the challenge files!",
+
             "Can you get the real meaning from a file. Download the file from given button.", 
-        //3
-            "Here is a string of ASCII numbers, unfortunately i couldn't read in ASCII. Would you mind converting it to a readable string? Download the file to proceed.",
-        //4
-            'Description for Challenge 4',
-        //5
+
+            "Here is a string of ASCII numbers, unfortunately I couldn't read in ASCII. Would you mind converting it to a readable string? Download the file to proceed.",
+
+            "What was I last working on? I remember writing a note to help me remember... You can download the challenge files to proceed.",
+
             'Description for Challenge 5',
-        //6
             'Description for Challenge 6',
-        //7
             'Description for Challenge 7',
-        //8
             "Cryptography can be easy, do you know what ROT13 is?",
-        //9
             'Description for Challenge 9',
-        //10
             'Description for Challenge 10',
-        //11
             'Description for Challenge 11', 
-        //12
             'Description for Challenge 12',
-        //13
             'Description for Challenge 13', 
-        //14
             'Description for Challenge 14', 
-        //15
             'Description for Challenge 15',
-        //16
             'Description for Challenge 16', 
-        //17
             'Description for Challenge 17', 
-        //18
             'Description for Challenge 18',
-        //19
             'Description for Challenge 19', 
-        //20
             'Description for Challenge 20'
         ];
 
         const hints = [
-            //1
             "QR codes are a way of encoding data. While they're most known for storing URLs, they can store other things too.", 
-            //2  
             "Engaging in various decoding processes is of utmost importance.", 
-            //3
             "CyberChef is a great online tool for any encoding but especially ASCII. I would recommend using from hex function.",
-            //4
-                'Description for Challenge 4',
-            //5
-                'Description for Challenge 5',
-            //6
-                'Description for Challenge 6',
-            //7
-                'Description for Challenge 7',
-            //8
-                'Hints are in the question already!',
-            //9
-                'Description for Challenge 9',
-            //10
-                'Description for Challenge 10',
-            //11
-                'Description for Challenge 11', 
-            //12
-                'Description for Challenge 12',
-            //13
-                'Description for Challenge 13', 
-            //14
-                'Description for Challenge 14', 
-            //15
-                'Description for Challenge 15',
-            //16
-                'Description for Challenge 16', 
-            //17
-                'Description for Challenge 17', 
-            //18
-                'Description for Challenge 18',
-            //19
-                'Description for Challenge 19', 
-            //20
-                'Description for Challenge 20'
+            'Description for Challenge 4',
+            'Description for Challenge 5',
+            'Description for Challenge 6',
+            'Description for Challenge 7',
+            'Hints are in the question already!',
+            'Description for Challenge 9',
+            'Description for Challenge 10',
+            'Description for Challenge 11', 
+            'Description for Challenge 12',
+            'Description for Challenge 13', 
+            'Description for Challenge 14', 
+            'Description for Challenge 15',
+            'Description for Challenge 16', 
+            'Description for Challenge 17', 
+            'Description for Challenge 18',
+            'Description for Challenge 19', 
+            'Description for Challenge 20'
         ];
 
         const tags = [
-        //1
             ['FORENSICS', 'QR CODE', 'browser webshell solvable'], 
-        //2
             ['Cryptography', 'base64', 'caesar'], 
-        //3
             ['Easy', 'General skills', 'ASCII'],
-        //4
             ['tag4-1', 'tag4-2', 'tag4-3'], 
-        //5
             ['tag5-1', 'tag5-2', 'tag5-3'], 
-        //6
             ['tag6-1', 'tag6-2', 'tag6-3'],
-        //7
             ['tag7-1', 'tag7-2', 'tag7-3'], 
-        //8
             ['Beginner', 'Cryptography', 'caesar'], 
-        //9
             ['tag9-1', 'tag9-2', 'tag9-3'],
-        //10
             ['tag10-1', 'tag10-2', 'tag10-3'],
             ['tag11-1', 'tag11-2', 'tag11-3'], 
             ['tag12-1', 'tag12-2', 'tag12-3'],
@@ -169,8 +141,9 @@
 
         document.getElementById('total-points').textContent = totalPoints;
 
-        // Dynamically generate challenge HTML
+        // Dynamically generate challenge HTML with tick image
         const container = document.querySelector('.container');
+        const tickImageSrc = 'tick.png'; // Path to your tick image
         for (let i = 0; i < 20; i++) {
             const challengeDiv = document.createElement('div');
             challengeDiv.className = 'challenge';
@@ -182,7 +155,7 @@
                 <h2>Challenge ${i + 1}</h2>
                 <p>${descriptions[i]}</p>
                 <div class="tags-container">${tagsHTML}</div>
-                <input type="text" placeholder="flag{your_flag}" class="flag-input">
+                <input type="text" placeholder="flag{your_flag}" class="flag-input" value="${sessionStorage.getItem(`flagInput${i}`) || ''}">
                 <div class="buttons-row">
                     <a href="files/${fileNames[i]}" download="${fileNames[i]}" class="download-button">Download File</a>
                     <button onclick="checkFlag(${i}, event)" class="submit-button">Submit Flag</button>
@@ -190,6 +163,7 @@
                 <button onclick="toggleHint(${i})" class="hint-button">Hint</button>
                 <p class="hint" id="hint${i}">${hints[i]}</p>
                 <p class="error-message"></p>
+                <img src="${tickImageSrc}" alt="Completed" class="status-image" id="status${i}">
             `;
 
             container.appendChild(challengeDiv);
@@ -202,6 +176,7 @@
             const input = challenge.getElementsByClassName('flag-input')[0];
             const errorMessage = challenge.getElementsByClassName('error-message')[0];
             const button = challenge.getElementsByClassName('submit-button')[0];
+            const statusImage = challenge.querySelector('.status-image');
 
             if (input.value === flags[challengeIndex]) {
                 if (!completedChallenges.has(challengeIndex)) {
@@ -235,26 +210,32 @@
                 errorMessage.style.color = 'green';
                 input.disabled = true;
                 button.disabled = true;
+
+                // Show tick image
+                statusImage.style.display = 'block';
             } else {
                 errorMessage.textContent = 'Wrong flag, try again.';
                 errorMessage.style.color = 'red';
             }
-        }
 
-        function toggleHint(index) {
-            const hint = document.getElementById(`hint${index}`);
-            hint.style.display = hint.style.display === 'none' ? 'block' : 'none';
+            // Store the input value
+            sessionStorage.setItem(`flagInput${challengeIndex}`, input.value);
         }
 
         function initializePage() {
             document.querySelectorAll('.challenge').forEach((challenge, index) => {
                 const input = challenge.getElementsByClassName('flag-input')[0];
                 const button = challenge.getElementsByClassName('submit-button')[0];
+                const statusImage = challenge.querySelector('.status-image');
+
                 if (completedChallenges.has(index)) {
                     input.disabled = true;
                     button.disabled = true;
                     challenge.getElementsByClassName('error-message')[0].textContent = 'Correct flag!';
                     challenge.getElementsByClassName('error-message')[0].style.color = 'green';
+
+                    // Ensure tick image is shown
+                    statusImage.style.display = 'block';
                 }
             });
 
@@ -264,6 +245,11 @@
         }
 
         initializePage();
+
+        function toggleHint(challengeIndex) {
+            const hint = document.getElementById(`hint${challengeIndex}`);
+            hint.style.display = hint.style.display === 'none' ? 'block' : 'none';
+        }
     </script>
 </body>
 </html>

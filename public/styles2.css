@@ -117,3 +117,19 @@ h1 {
     margin: 0 5px 5px 0;
     font-size: 12px;
 }
+
+.challenge {
+    position: relative;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.status-image {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 24px; /* Adjust size as needed */
+    height: 24px; /* Adjust size as needed */
+    display: none; /* Initially hidden */
+}
