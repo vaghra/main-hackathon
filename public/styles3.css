@@ -1,18 +1,18 @@
 /* styles3.css */
-
 body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0f4f8; /* Light background for uniform look */
+    background-color: #1a1a1a; /* Dark background for contrast */
+    color: #e0e0e0; /* Light text for readability */
 }
 
 header {
-    background-color: #003366; /* Dark blue header */
-    color: #ffffff;
+    background-color: #282c34; /* Dark gray header */
+    color: #61dafb; /* Light blue for text */
     padding: 20px 0;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Stronger shadow for depth */
 }
 
 h1 {
@@ -33,36 +33,36 @@ table {
     width: 90%;
     max-width: 800px;
     border-collapse: collapse;
-    background-color: #ffffff; /* Clean white background */
+    background-color: #282c34; /* Dark background for table */
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Stronger shadow for depth */
     overflow: hidden; /* Ensure border-radius is visible */
 }
 
 th, td {
     padding: 14px;
     text-align: center;
-    border-bottom: 1px solid #d1d9e6; /* Light gray border for rows */
+    border-bottom: 1px solid #3b3f46; /* Darker gray border for rows */
 }
 
 th {
-    background-color: #004080; /* Medium blue for header cells */
-    color: #ffffff;
+    background-color: #3b3f46; /* Dark gray for header cells */
+    color: #61dafb; /* Light blue text */
     font-size: 1.1em;
     font-weight: 600;
 }
 
 tr:nth-child(even) {
-    background-color: #f5f7f9; /* Very light gray for even rows */
+    background-color: #2c313a; /* Slightly lighter gray for even rows */
 }
 
 tr:hover {
-    background-color: #e2e6ea; /* Subtle hover effect */
+    background-color: #3b3f46; /* Dark gray for hover effect */
 }
 
 caption {
     caption-side: top;
     font-size: 1.2em;
     margin: 10px 0;
-    color: #003366; /* Dark blue for caption text */
+    color: #61dafb; /* Light blue for caption text */
 }

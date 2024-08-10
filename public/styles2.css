@@ -1,72 +1,121 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1e1e1e, #121212);
+    color: #f1f1f1;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
 .container {
     width: 90%;
     max-width: 800px;
     margin: 20px auto;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    animation: gradientShift 10s infinite alternate; /* Gradient animation */
+}
+
+@keyframes gradientShift {
+    0% {
+        background: rgba(255, 255, 255, 0.1);
+    }
+    100% {
+        background: rgba(255, 255, 255, 0.2);
+    }
 }
 
 h1 {
     text-align: center;
-    color: #444;
-}
+    color: hsl(219, 81%, 65%);
+    font-weight: 560;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}mw f
 
 .challenge {
-    background-color: #fff;
+    background-color: rgba(47, 35, 35, 0.8);
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
     padding: 20px;
-    margin: 10px 0;
+    margin: 20px 0;
     width: 100%;
+    border: 1px solid #444;
+    position: relative;
+    border: 1px solid transparent; /* Transparent border for border effect */
+    background: linear-gradient(135deg, rgba(40, 40, 40, 0.8), rgba(20, 20, 20, 0.9));
+}
+
+.challenge:hover {
+    border-color: #b61111; /* Border color on hover */
+    background: linear-gradient(135deg, rgba(40, 40, 40, 0.9), rgba(20, 20, 20, 1));
 }
 
 .challenge h2 {
     margin: 0 0 10px;
-    color: #555;
+    color: #f1f1f1;
 }
 
 .challenge p {
     margin: 5px 0;
-    color: #666;
+    color: #ddd;
+    line-height: 1.5;
 }
 
 .flag-input {
     width: calc(100% - 20px);
     padding: 10px;
     margin-bottom: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #555;
     border-radius: 4px;
+    background-color: #333;
+    color: #f1f1f1;
+    transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.flag-input:focus {
+    border-color: #ff4081;
+    background-color: #444; /* Slightly lighter background on focus */
+    box-shadow: 0 0 8px rgba(255, 64, 129, 0.5); /* Glow effect */
 }
 
 .buttons-row {
     display: flex;
-    justify-content: space-between;
     gap: 10px;
+    margin-bottom: 10px;
 }
 
 .download-button, .submit-button {
-    width: 49%;
+    flex: 1;
     padding: 10px;
     border: none;
     border-radius: 4px;
-    background-color: #007BFF;
+    background: #2941ca;
     color: white;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.download-button:hover, .submit-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Glow effect on hover */
 }
 
 .submit-button {
-    background-color: #28a745;
+    background: #098f41;
+}
+
+.submit-button:hover {
+    background: linear-gradient(135deg, #00c853, #00bfae);
 }
 
 .hint-button {
@@ -74,34 +123,47 @@ h1 {
     padding: 10px;
     border: none;
     border-radius: 4px;
-    background-color: #ffc107;
+    background: linear-gradient(135deg, #ff9800, #f57c00);
     color: white;
     cursor: pointer;
     margin-top: 10px;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hint-button:hover {
+    background: linear-gradient(135deg, #fb8c00, #f57c00);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Glow effect on hover */
 }
 
 .hint {
     display: none;
-    background-color: #f0f0f0;
-    border-left: 4px solid #ffc107;
+    background-color: #333;
+    border-left: 4px solid #ff9800;
     padding: 10px;
     margin: 10px 0;
-    color: #888;
+    color: #aaa;
+    animation: fadeIn 0.5s ease forwards;
 }
 
 .error-message {
-    color: red;
+    color: #ff6b6b;
     margin-top: 5px;
 }
 
 .total-points {
     position: fixed;
-    bottom: 10px;
-    right: 10px;
-    background-color: #007BFF;
+    bottom: 20px;
+    right: 20px;
+    background: #00bfae;
     color: white;
-    padding: 10px;
-    border-radius: 5px;
+    padding: 15px;
+    border-radius: 10px;
+    font-weight: bold;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    font-size: 16px;
+    z-index: 1000;
+    animation: gradientShift 10s infinite alternate; /* Gradient animation */
 }
 
 .tags-container {
@@ -110,26 +172,35 @@ h1 {
 
 .tag {
     display: inline-block;
-    background-color: #e0e0e0;
-    color: #555;
+    background-color: #444;
+    color: #bbb;
     padding: 5px 10px;
     border-radius: 15px;
     margin: 0 5px 5px 0;
     font-size: 12px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.challenge {
-    position: relative;
-    border: 1px solid #ddd;
-    margin-bottom: 20px;
-    padding: 10px;
+.tag:hover {
+    background-color: #555;
+    transform: scale(1.05); /* Slight scale effect on hover */
 }
 
 .status-image {
     position: absolute;
     top: 10px;
     right: 10px;
-    width: 24px; /* Adjust size as needed */
-    height: 24px; /* Adjust size as needed */
-    display: none; /* Initially hidden */
+    width: 24px;
+    height: 24px;
+    display: none;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }

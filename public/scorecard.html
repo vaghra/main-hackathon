@@ -5,11 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scorecard - CodArt'24</title>
     <link rel="stylesheet" href="styles3.css">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        header {
+            padding: 10px;
+            text-align: center;
+            background-color: #333;
+            color: white;
+        }
+        .back-button {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: #00bcd4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .back-button:hover {
+            background-color: #0097a7;
+        }
+    </style>
 </head>
 <body>
     <header>
         <h1>CodArt'24 Scorecard</h1>
     </header>
+
+    <a href="main.html" class="back-button">Back to Login</a>
 
     <div class="container">
         <table>
@@ -27,27 +65,56 @@
     </div>
 
     <script>
+        let numberOfTeams = 13; // Initial number of teams
+        const initialPoints = 0;
+
+        // Function to initialize or update the scorecard
+        function initializeScorecard(numTeams) {
+            const scorecardBody = document.getElementById('scorecard-body');
+            scorecardBody.innerHTML = ''; // Clear existing rows
+
+            for (let i = 1; i <= numTeams; i++) {
+                const row = document.createElement('tr');
+                row.id = `row${i}`;
+                row.innerHTML = `
+                    <td>${i}</td>
+                    <td>Team ${i}</td>
+                    <td>${initialPoints}</td>
+                `;
+                scorecardBody.appendChild(row);
+            }
+        }
+
+        // Function to fetch and update scores from the server
         function fetchScores() {
             fetch('/scorecard/data')
                 .then(response => response.json())
                 .then(scores => {
                     const scorecardBody = document.getElementById('scorecard-body');
-                    scorecardBody.innerHTML = ''; // Clear existing rows
-                    Object.keys(scores).forEach((teamName, index) => {
-                        const row = document.createElement('tr');
-                        row.innerHTML = `
-                            <td>${index + 1}</td>
-                            <td>${teamName}</td>
-                            <td>${scores[teamName]}</td>
-                        `;
-                        scorecardBody.appendChild(row);
+                    const teams = Object.keys(scores);
+                    
+                    // Initialize the scorecard for the number of teams fetched
+                    if (teams.length > numberOfTeams) {
+                        numberOfTeams = teams.length;
+                        initializeScorecard(numberOfTeams);
+                    }
+                    
+                    // Update each row with the received data
+                    teams.forEach((teamName, index) => {
+                        const points = scores[teamName];
+                        const row = document.getElementById(`row${index + 1}`);
+                        if (row) {
+                            row.cells[1].textContent = teamName;
+                            row.cells[2].textContent = points;
+                        }
                     });
                 })
                 .catch(error => console.error('Error fetching scores:', error));
         }
 
-        // Fetch scores initially and periodically
-        fetchScores();
+        // Initialize the scorecard and fetch scores periodically
+        initializeScorecard(numberOfTeams);
+        fetchScores(); // Fetch scores initially
         setInterval(fetchScores, 5000); // Fetch scores every 5 seconds
     </script>
 </body>

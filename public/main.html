@@ -5,6 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodArt'24 Hackathon</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Optional: Style the eye icon */
+        .password-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .password-container input[type="password"] {
+            padding-right: 30px; /* Space for the eye icon */
+        }
+        .password-container .toggle-icon {
+            position: absolute;
+            right: 10px;
+            cursor: pointer;
+            color: #888;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -14,30 +31,48 @@
         </div>
         <h2>Welcome to the Hackathon</h2>
         <h2>Login Panel</h2>
-        <input type="text" id="username" placeholder="Username" required>
-        <input type="password" id="password" placeholder="Password" required>
-        <button onclick="login()">Login</button>
-        <button onclick="goToScorecard()">Scorecard</button>
+        <form onsubmit="return login()">
+            <input type="text" id="username" placeholder="Username" required>
+            <div class="password-container">
+                <input type="password" id="password" placeholder="Password" required>
+                <span id="toggle-password" class="toggle-icon">👁️</span>
+            </div>
+            <button type="submit">Login</button>
+            <button type="button" onclick="goToScorecard()">Scorecard</button>
+        </form>
     </div>
 
+    
     <script>
         const users = [
-            { username: 'teamalpha', password: 'alpha123' },
-            { username: 'teambeta', password: 'beta123' },
-            { username: 'teamgamma', password: 'gamma123' },
-            { username: 'teamdelta', password: 'delta123' },
-            { username: 'teamepsilon', password: 'epsilon123' },
-            { username: 'teamiota', password: 'iota123' },
-            { username: 'teamlambda', password: 'lambda123' },
-            { username: 'teamomicron', password: 'omicron123' },
-            { username: 'teamsigma', password: 'sigma123' },
-            { username: 'teamomega', password: 'omega123' },
-            { username: 'teamphi', password: 'phi123' },
-            { username: 'teamrho', password: 'rho123' },
-            { username: 'team1', password: 'pass1' },
-            { username: 'team2', password: 'pass2' },
-            { username: 'team3', password: 'pass3' },
+            { "username": "FlagHunt", "password": "F1@ghunt2024" },
+            { "username": "BitDefender", "password": "B!tD3f3nd3r2024" },
+            { "username": "PayloadX", "password": "P@yl0@dX!2024" },
+            { "username": "HexBreaker", "password": "H3x_Br3@k3r!" },
+            { "username": "CodeRanger", "password": "C0d3R@ng3r2024" },
+            { "username": "DataPulse", "password": "D@t@Puls3!2024" },
+            { "username": "KeySeeker", "password": "K3y_S33k3r2024" },
+            { "username": "TraceHack", "password": "Tr@c3H@ck2024" },
+            { "username": "SecuRift", "password": "S3cuR!ft2024" },
+            { "username": "FlagQuest", "password": "F!@gQu3st2024" },
+            { "username": "RootFinder", "password": "R00tF!nd3r2024" },
+            { "username": "NetSleuth", "password": "N3t_Sl3uth!2024" },
+            { "username": "CipherTrail", "password": "C1ph3r_Tra!l2024" },
+            { "username": "StealthNode", "password": "St34lthN0d3!" },
+            { "username": "DecodeWave", "password": "D3c0d3_W@v3!2024" }
         ];
+
+        document.getElementById('toggle-password').addEventListener('click', function() {
+            const passwordField = document.getElementById('password');
+            const icon = this;
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                icon.textContent = '🙈'; // Optional: Change icon to indicate visibility
+            } else {
+                passwordField.type = 'password';
+                icon.textContent = '👁️'; // Optional: Change icon to indicate hidden
+            }
+        });
 
         function login() {
             const username = document.getElementById('username').value;
@@ -46,8 +81,10 @@
 
             if (user) {
                 window.location.href = 'challenges.html';
+                return false; // Prevent form submission
             } else {
                 alert('Invalid username or password');
+                return false; // Prevent form submission
             }
         }
 
